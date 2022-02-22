@@ -38,3 +38,4 @@ TODO
 - https://github.com/metachris/typescript-boilerplate
 - https://github.com/GeekyAnts/express-typescript
 - https://github.com/w3tecch/express-typescript-boilerplate
+- https://developer.okta.com/blog/2018/11/15/node-express-typescript
