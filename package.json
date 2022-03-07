@@ -6,7 +6,7 @@
   "scripts": {
     "build": "tsc -p tsconfig.json",
     "cli": "ts-node src/cli.ts",
-    "dev": "tsc --project './tsconfig.json' --watch & NODE_ENV=development nodemon dist",
+    "dev": "tsc --project tsconfig.json --watch & NODE_ENV=development nodemon dist",
     "prestart": "npm run build",
     "start": "node .",
     "test": "jest",
