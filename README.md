@@ -18,11 +18,13 @@ TODO
 - TODO testing
 - TODO logging
 - TODO exception handling
-- TODO for environment configuration
+- Environment configuration
+  - `dotenv` (see [./src/config/index.ts](./src/config/index.ts))
+  - consider https://www.npmjs.com/package/rc
 - TODO ORM / data access
 - TODO linting
 - TODO deployment / CI/CD
-- TODO routing
+- [routing](src/routes/index.ts)
 - TODO modules
 
 ---

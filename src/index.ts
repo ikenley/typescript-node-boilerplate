@@ -1,6 +1,7 @@
 import app from "./app";
+import config from "./config";
 
-const port = 8080; // default port to listen
+const port = config.port;
 
 // start the Express server
 app.listen(port, () => {
