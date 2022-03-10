@@ -12,20 +12,19 @@ TODO
 
 ## Features
 
-- Typescript
-- Node
-- Express
+- [Typescript](https://www.typescriptlang.org/)
+- [Node](https://nodejs.org/en/)
+- [Express](https://expressjs.com/)
 - TODO testing
-- TODO logging
+- Logging: [winston](https://github.com/winstonjs/winston)
 - TODO exception handling
 - Environment configuration
   - `dotenv` (see [./src/config/index.ts](./src/config/index.ts))
   - consider https://www.npmjs.com/package/rc
 - TODO ORM / data access
-- TODO linting
+- [linting](eslintrc.js)
 - TODO deployment / CI/CD
 - [routing](src/routes/index.ts)
-- TODO modules
 
 ---
 
