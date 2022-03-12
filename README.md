@@ -26,6 +26,7 @@ TODO
 - TODO deployment / CI/CD
 - [routing](src/routes/index.ts)
 - [Terraform](https://www.terraform.io/): See `./terraform`
+- [Flyway](https://flywaydb.org/) SQL migrations. See `./sql/flyway`
 
 ---
 
