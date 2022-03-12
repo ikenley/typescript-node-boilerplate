@@ -25,6 +25,7 @@ TODO
 - [linting](eslintrc.js)
 - TODO deployment / CI/CD
 - [routing](src/routes/index.ts)
+- [Terraform](https://www.terraform.io/): See `./terraform`
 
 ---
 
@@ -33,6 +34,26 @@ TODO
 TODO
 
 ---
+
+---
+
+## Terraform
+
+```
+cd terraform/dev
+terraform init
+terraform apply
+```
+
+---
+
+## Flyway Migrations
+
+```
+docker run --network="host" --rm -v /$(pwd)/sql/flyway/conf:/flyway/conf -v /$(pwd)/sql/flyway/sql:/flyway/sql flyway/flyway migrate
+
+docker run --network="host" --rm --env-file .env -v C:\Users\ikenl\git\typescript-node-boilerplate\sql\flyway\conf:/flyway/conf -v C:\Users\ikenl\git\typescript-node-boilerplate\sql\flyway\sql:/flyway/sql flyway/flyway migrate
+```
 
 ## Further Reading
 
