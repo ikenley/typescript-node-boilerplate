@@ -3,7 +3,6 @@ import { createConnection } from "typeorm";
 import { Film } from "@/components/film";
 
 // Configures database connection
-
 const { host, port, user, password, database, schema } = config.db;
 
 export default () => {
@@ -20,8 +19,6 @@ export default () => {
     logging: false,
     ssl: config.appEnv !== "local",
   })
-    .then((_connection) => {
-      // here you can start to work with your entities
-    })
+    .then((_connection) => {})
     .catch((error) => console.log(error));
 };
