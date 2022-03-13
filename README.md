@@ -21,7 +21,8 @@ TODO
 - Environment configuration
   - `dotenv` (see [./src/config/index.ts](./src/config/index.ts))
   - consider https://www.npmjs.com/package/rc
-- TODO ORM / data access
+- [typeorm](https://typeorm.io/#/) for data access
+- [typedi](https://github.com/typestack/typedi) for dependency injection
 - [linting](eslintrc.js)
 - TODO deployment / CI/CD
 - [routing](src/routes/index.ts)

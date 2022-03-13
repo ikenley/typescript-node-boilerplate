@@ -1,12 +1,15 @@
 import config from "@/config";
-import { createConnection } from "typeorm";
+import { createConnection, useContainer } from "typeorm";
 import { Film } from "@/components/film";
+import { Container } from "typeorm-typedi-extensions";
 
 // Configures database connection
 const { host, port, user, password, database, schema } = config.db;
 
-export default () => {
-  createConnection({
+useContainer(Container);
+
+export default async () => {
+  await createConnection({
     type: "postgres",
     host: host,
     port: port,

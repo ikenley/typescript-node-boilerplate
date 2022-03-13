@@ -1,27 +1,24 @@
 import { Router } from "express";
-import { getRepository } from "typeorm";
-import Film from "./Film";
+import { Container } from "typedi";
+import FilmService from "./FilmService";
 
 const route = Router();
-
-// const films: Film[] = [
-//   { id: "0", name: "foo" },
-//   { id: "1", name: "bar" },
-// ];
 
 const filmController = (app: Router) => {
   app.use("/film", route);
 
+  const filmService = Container.get(FilmService);
+
   route.get("/", async (_req, res) => {
-    const filmRepo = getRepository(Film);
-    const films = await filmRepo.find({ take: 10 });
+    const films = await filmService.find();
     res.send(films);
   });
 
-  // route.get("/:id", (req, res) => {
-  //   const product = films.find((p) => p.id === req.params.id);
-  //   res.send(product);
-  // });
+  route.get("/year/:year", async (req, res) => {
+    const year = parseInt(req.params.year);
+    const films = await filmService.findByYear(year);
+    res.send(films);
+  });
 };
 
 export default filmController;

@@ -1,12 +1,12 @@
+import "reflect-metadata";
 import { Express } from "express";
 import expressLoader from "./express";
-// import dependencyInjectorLoader from "./dependencyInjector";
+import dependencyInjectorLoader from "./dependencyInjector";
 // import mongooseLoader from "./mongoose";
 import typeOrmLoader from "./typeOrmLoader";
 import Logger from "./logger";
 //We have to import at least all the events once so they can be triggered
 //import "./events";
-import "reflect-metadata";
 
 type Props = {
   expressApp: Express;
@@ -29,20 +29,11 @@ export default async ({ expressApp }: Props) => {
   //   // Notice the require syntax and the '.default'
   //   model: require("../models/user").default,
   // };
-
-  // // It returns the agenda instance because it's needed in the subsequent loaders
-  // const { agenda } = await dependencyInjectorLoader({
-  //   mongoConnection,
-  //   models: [
-  //     userModel,
-  //     // salaryModel,
-  //     // whateverModel
-  //   ],
-  //  });
-  // Logger.info("Dependency Injector loaded");
-
   await typeOrmLoader();
   Logger.info("typeOrm loaded");
+
+  await dependencyInjectorLoader();
+  Logger.info("Dependency Injector loaded");
 
   await expressLoader({ app: expressApp });
   Logger.info("Express loaded");

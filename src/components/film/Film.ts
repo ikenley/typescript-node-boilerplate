@@ -7,6 +7,9 @@ class Film {
 
   @Column("varchar")
   name: string;
+
+  @Column("int")
+  year: number;
 }
 
 export default Film;
