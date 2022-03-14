@@ -18,7 +18,7 @@ export default async () => {
     database: database,
     schema: schema,
     entities: [Film],
-    synchronize: false,
+    synchronize: false, // config.nodeEnv === "test"
     logging: false,
     ssl: config.appEnv !== "local",
   })

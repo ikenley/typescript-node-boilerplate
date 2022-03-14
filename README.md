@@ -15,7 +15,7 @@ TODO
 - [Typescript](https://www.typescriptlang.org/)
 - [Node](https://nodejs.org/en/)
 - [Express](https://expressjs.com/)
-- TODO testing
+- [jest](https://jestjs.io/) and [supertest](https://github.com/visionmedia/supertest) for testing
 - Logging: [winston](https://github.com/winstonjs/winston)
 - TODO exception handling
 - Environment configuration

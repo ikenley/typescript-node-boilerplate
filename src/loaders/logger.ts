@@ -2,17 +2,23 @@ import winston from "winston";
 import config from "@/config";
 
 const transports = [];
-if (process.env.NODE_ENV !== "development") {
-  transports.push(new winston.transports.Console());
-} else {
+if (process.env.NODE_ENV === "test") {
   transports.push(
-    new winston.transports.Console({
-      format: winston.format.combine(
-        winston.format.cli(),
-        winston.format.splat()
-      ),
-    })
+    new winston.transports.File({ filename: `${config.appName}.log` })
   );
+} else {
+  if (process.env.NODE_ENV !== "development") {
+    transports.push(new winston.transports.Console());
+  } else {
+    transports.push(
+      new winston.transports.Console({
+        format: winston.format.combine(
+          winston.format.cli(),
+          winston.format.splat()
+        ),
+      })
+    );
+  }
 }
 
 const LoggerInstance = winston.createLogger({

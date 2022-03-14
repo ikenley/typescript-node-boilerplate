@@ -5,10 +5,11 @@ process.env.NODE_ENV = process.env.NODE_ENV || "development";
 
 dotenv.config();
 
-type AppEnv = "local" | "dev" | "staging" | "prod";
+type AppEnv = "local" | "test" | "dev" | "staging" | "prod";
 
 type ConfigOptions = {
   api: { prefix: string };
+  appName: string;
   appEnv: AppEnv;
   db: {
     host: string;
@@ -19,11 +20,13 @@ type ConfigOptions = {
     schema: string;
   };
   logs: { level: string };
+  nodeEnv: string;
   port: number;
 };
 
 const config: ConfigOptions = {
   api: { prefix: "" },
+  appName: process.env.APP_NAME || "app",
   appEnv: process.env.APP_ENV as AppEnv,
   db: {
     host: process.env.DB_HOST!,
@@ -34,6 +37,7 @@ const config: ConfigOptions = {
     schema: process.env.DB_SCEHMA!,
   },
   logs: { level: process.env.LOGS__LEVEL || "info" },
+  nodeEnv: process.env.NODE_ENV,
   port: parseInt(process.env.PORT || "8080", 10),
 };
 
