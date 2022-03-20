@@ -11,6 +11,14 @@ type ConfigOptions = {
   api: { prefix: string };
   appName: string;
   appEnv: AppEnv;
+  aws: {
+    region: string;
+  };
+  cognito: {
+    userPoolId: string;
+    userPoolClientId: string;
+    userPoolClientSecret: string;
+  };
   db: {
     host: string;
     port: number;
@@ -28,6 +36,14 @@ const config: ConfigOptions = {
   api: { prefix: "" },
   appName: process.env.APP_NAME || "app",
   appEnv: process.env.APP_ENV as AppEnv,
+  aws: {
+    region: process.env.AWS_REGION!,
+  },
+  cognito: {
+    userPoolId: process.env.COGNITO_USER_POOL_ID!,
+    userPoolClientId: process.env.COGNITO_USER_POOL_CLIENT_ID!,
+    userPoolClientSecret: process.env.COGNITO_USER_POOL_CLIENT_SECRET!,
+  },
   db: {
     host: process.env.DB_HOST!,
     port: parseInt(process.env.DB_PORT!),

@@ -14,3 +14,13 @@ module "database" {
 
   schemas = var.schemas
 }
+
+module "app" {
+  source = "../app"
+
+  namespace   = var.namespace
+  environment = var.environment
+  name        = var.name
+
+  cognito_pool_id = var.cognito_pool_id
+}

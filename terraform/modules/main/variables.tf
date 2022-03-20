@@ -34,3 +34,7 @@ variable "schemas" {
     dba_users   = list(string)
   }))
 }
+
+variable "cognito_pool_id" {
+  default = ""
+}
