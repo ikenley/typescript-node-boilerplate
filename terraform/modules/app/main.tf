@@ -20,7 +20,7 @@ resource "aws_cognito_user_pool_client" "this" {
 
   user_pool_id = aws_cognito_user_pool.this[0].id
 
-  generate_secret     = false
+  generate_secret     = true
   explicit_auth_flows = ["ADMIN_NO_SRP_AUTH"]
 
 }

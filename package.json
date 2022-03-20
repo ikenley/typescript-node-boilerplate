@@ -41,6 +41,7 @@
   "dependencies": {
     "@aws-sdk/client-cognito-identity-provider": "^3.54.1",
     "cors": "^2.8.5",
+    "crypto": "^1.0.1",
     "dotenv": "^16.0.0",
     "express": "^4.17.3",
     "method-override": "^3.0.0",
