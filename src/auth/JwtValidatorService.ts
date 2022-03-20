@@ -19,6 +19,7 @@ export default class JwtValidatorService {
 
     try {
       const response = await this.cognitoExpress.validate(tokenParts[1]);
+      console.log("response", response);
       return response;
     } catch (e) {
       this.logger.error(e);
