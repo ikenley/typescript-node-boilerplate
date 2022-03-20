@@ -6,8 +6,10 @@ import { filmController } from "../components/film";
 // guaranteed to get dependencies
 export default () => {
   const app = Router();
+
   authController(app);
   filmController(app);
   statusController(app);
+
   return app;
 };

@@ -1,11 +1,13 @@
 import { Router } from "express";
 import { Container } from "typedi";
+import { isAuthenticated } from "@/auth";
 import FilmService from "./FilmService";
 
 const route = Router();
 
 const filmController = (app: Router) => {
   app.use("/film", route);
+  route.use(isAuthenticated);
 
   const filmService = Container.get(FilmService);
 
