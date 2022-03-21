@@ -52,7 +52,7 @@ const config: ConfigOptions = {
     database: process.env.DB_DATABASE!,
     schema: process.env.DB_SCEHMA!,
   },
-  logs: { level: process.env.LOGS__LEVEL || "info" },
+  logs: { level: process.env.LOGS__LEVEL || "http" },
   nodeEnv: process.env.NODE_ENV,
   port: parseInt(process.env.PORT || "8080", 10),
 };
