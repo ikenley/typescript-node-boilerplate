@@ -1,5 +1,11 @@
 import authController from "./authController";
 import JwtValidatorService from "./JwtValidatorService";
-import { isAuthenticated } from "./authMiddleware";
+import { isAuthenticated, isAuthorized, isAuth } from "./authMiddleware";
 
-export { authController, isAuthenticated, JwtValidatorService };
+export {
+  authController,
+  isAuthenticated,
+  isAuthorized,
+  isAuth,
+  JwtValidatorService,
+};
