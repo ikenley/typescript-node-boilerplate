@@ -1,4 +1,5 @@
 import express from "express";
+import helmet from "helmet";
 import cors from "cors";
 import morgan from "morgan";
 import logger from "./logger";
@@ -9,6 +10,9 @@ export default ({ app }: { app: express.Application }) => {
   // Useful if you're behind a reverse proxy (Heroku, Bluemix, AWS ELB, Nginx, etc)
   // It shows the real origin IP in the heroku or Cloudwatch logs
   app.enable("trust proxy");
+
+  // Security against common threats
+  app.use(helmet());
 
   app.use(cors());
 
