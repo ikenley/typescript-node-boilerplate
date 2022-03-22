@@ -28,7 +28,7 @@
       "ES6",
       "DOM"
     ],
-    "baseUrl": ".",
+    "baseUrl": "./",
     "paths": {
       "@/*": [
         "src/*"

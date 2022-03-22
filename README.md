@@ -5,7 +5,8 @@ Boilerplate application for creating a REST-ful API using Typscript + Node
 ## Getting Started
 
 ```
-TODO
+npm install
+npm run start
 ```
 
 ---
@@ -24,10 +25,11 @@ TODO
 - [typeorm](https://typeorm.io/#/) for data access
 - [typedi](https://github.com/typestack/typedi) for dependency injection
 - [linting](eslintrc.js)
-- TODO deployment / CI/CD
 - [routing](src/routes/index.ts)
-- [Terraform](https://www.terraform.io/): See `./terraform`
 - [Flyway](https://flywaydb.org/) SQL migrations. See `./sql/flyway`
+- [Terraform](https://www.terraform.io/): See `./terraform`
+- [Docker](https://www.docker.com/) and TODO ECS Fargate for hosting
+- TODO Amazon CodePipeline and CodeBuild for CI/CD
 
 ---
 
@@ -56,6 +58,22 @@ docker run --network="host" --rm -v /$(pwd)/sql/flyway/conf:/flyway/conf -v /$(p
 
 docker run --network="host" --rm --env-file .env -v C:\Users\ikenl\git\typescript-node-boilerplate\sql\flyway\conf:/flyway/conf -v C:\Users\ikenl\git\typescript-node-boilerplate\sql\flyway\sql:/flyway/sql flyway/flyway migrate
 ```
+
+---
+
+## Docker
+
+This project uses [Docker](https://www.docker.com/) along with ECS Fargate for hosting.
+
+```
+docker build --tag typescript-node-boilerplate .
+
+docker run --rm --env-file ./.env -p 8080:8080 typescript-node-boilerplate
+
+docker tag typescript-node-boilerplate:latest typescript-node-boilerplate:1.0.0
+```
+
+---
 
 ## Further Reading
 

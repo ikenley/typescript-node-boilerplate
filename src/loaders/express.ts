@@ -1,5 +1,5 @@
 import express from "express";
-import helmet from "helmet";
+//import helmet from "helmet";
 import cors from "cors";
 import morgan from "morgan";
 import logger from "./logger";
@@ -12,7 +12,7 @@ export default ({ app }: { app: express.Application }) => {
   app.enable("trust proxy");
 
   // Security against common threats
-  app.use(helmet());
+  //app.use(helmet());
 
   app.use(cors());
 
