@@ -14,7 +14,7 @@ type Props = {
 
 export default async ({ expressApp }: Props) => {
   await typeOrmLoader();
-  Logger.info("typeOrm loaded");
+  Logger.info("typeOrm loaded", { foo: "bar" });
 
   await dependencyInjectorLoader();
   Logger.info("Dependency Injector loaded");

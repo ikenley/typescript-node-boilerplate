@@ -20,7 +20,7 @@ export default async () => {
     entities: [Film],
     synchronize: false, // config.nodeEnv === "test"
     logging: false,
-    ssl: config.appEnv !== "local",
+    ssl: config.app.env !== "local",
   })
     .then((_connection) => {})
     .catch((error) => console.log(error));

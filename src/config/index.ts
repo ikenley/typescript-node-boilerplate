@@ -9,8 +9,7 @@ type AppEnv = "local" | "test" | "dev" | "staging" | "prod";
 
 type ConfigOptions = {
   api: { prefix: string };
-  appName: string;
-  appEnv: AppEnv;
+  app: { env: AppEnv; name: string; version: string };
   aws: {
     region: string;
   };
@@ -34,8 +33,11 @@ type ConfigOptions = {
 
 const config: ConfigOptions = {
   api: { prefix: "" },
-  appName: process.env.APP_NAME || "app",
-  appEnv: process.env.APP_ENV as AppEnv,
+  app: {
+    env: process.env.APP_ENV as AppEnv,
+    name: process.env.APP_NAME || "app",
+    version: process.env.APP_VERSION!,
+  },
   aws: {
     region: process.env.AWS_REGION!,
   },

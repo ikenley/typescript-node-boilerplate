@@ -4,7 +4,7 @@ import config from "@/config";
 const transports = [];
 if (process.env.NODE_ENV === "test") {
   transports.push(
-    new winston.transports.File({ filename: `${config.appName}.log` })
+    new winston.transports.File({ filename: `${config.app.name}.log` })
   );
 } else {
   if (process.env.NODE_ENV !== "development") {
@@ -12,10 +12,19 @@ if (process.env.NODE_ENV === "test") {
   } else {
     transports.push(
       new winston.transports.Console({
-        format: winston.format.combine(
-          winston.format.cli(),
-          winston.format.splat()
-        ),
+        // format: winston.format.combine(
+        //   winston.format.colorize(),
+        //   winston.format.timestamp(),
+        //   winston.format.metadata({
+        //     fillExcept: ["message", "level", "timestamp", "label"],
+        //   }),
+        //   winston.format.printf(({ timestamp, level, message, metadata }) => {
+        //     return `${timestamp} ${level}: ${message} ${
+        //       metadata ? JSON.stringify(metadata) : ""
+        //     }`;
+        //   }),
+        //   winston.format.errors({ stack: true })
+        // ),
       })
     );
   }
@@ -28,11 +37,13 @@ const LoggerInstance = winston.createLogger({
     winston.format.timestamp({
       format: "YYYY-MM-DD HH:mm:ss",
     }),
-    winston.format.errors({ stack: true }),
-    winston.format.splat(),
-    winston.format.json()
+    winston.format.json(),
+    winston.format.errors({ stack: true })
   ),
   transports,
+  defaultMeta: {
+    app: config.app,
+  },
 });
 
 export default LoggerInstance;
