@@ -35,13 +35,6 @@ export default ({ app }: { app: express.Application }) => {
   // Load API routes
   app.use(config.api.prefix, routes());
 
-  // API Documentation
-  // app.use(
-  //   OpticMiddleware({
-  //     enabled: process.env.NODE_ENV !== "production",
-  //   })
-  // );
-
   /// catch 404 and forward to error handler
   app.use((_req, _res, next) => {
     const err: any = new Error("Not Found");

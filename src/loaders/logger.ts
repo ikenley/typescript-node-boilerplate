@@ -1,6 +1,8 @@
 import winston from "winston";
 import config from "../config";
 
+export const LoggerToken = "logger";
+
 const transports = [];
 if (process.env.NODE_ENV === "test") {
   transports.push(

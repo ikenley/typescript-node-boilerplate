@@ -5,10 +5,11 @@ import CognitoExpress from "cognito-express";
 import { CognitoIdentityProviderClient } from "@aws-sdk/client-cognito-identity-provider";
 import config from "../config";
 import FilmRepository from "../components/film/FilmRepository";
+import { LoggerToken } from "./logger";
 
 export default () => {
   try {
-    container.register("logger", { useValue: LoggerInstance });
+    container.register(LoggerToken, { useValue: LoggerInstance });
 
     const cognitoExpress = new CognitoExpress({
       region: config.aws.region,

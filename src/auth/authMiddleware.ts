@@ -1,8 +1,12 @@
 import { container } from "tsyringe";
 import { Request, Response, NextFunction } from "express";
-import { Logger } from "winston";
+import LoggerProvider from "../utils/LoggerProvider";
 import JwtValidatorService from "./JwtValidatorService";
 import { User } from "./User";
+
+const getLogger = () => {
+  return container.resolve(LoggerProvider).provide("authMiddleware");
+};
 
 export const isAuthenticated = async (
   req: Request,
@@ -45,7 +49,7 @@ export const isAuthorized = async (
   if (user.isInGroup("admin")) {
     next();
   } else {
-    const logger: Logger = container.resolve("logger");
+    const logger = getLogger();
     logger.warn("User not authorized");
     return res.status(403).send("Not authorized");
   }

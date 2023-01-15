@@ -4,17 +4,22 @@ import {
   AdminInitiateAuthCommand,
 } from "@aws-sdk/client-cognito-identity-provider";
 import winston from "winston";
-import config from "../config";
 import { createHmac } from "crypto";
+import config from "../config";
+import LoggerProvider from "../utils/LoggerProvider";
 
 const { userPoolId, userPoolClientId, userPoolClientSecret } = config.cognito;
 
 @injectable()
 export default class AuthService {
+  private logger: winston.Logger;
+
   constructor(
-    @inject("logger") private logger: winston.Logger,
+    private loggerProvider: LoggerProvider,
     private cognitoClient: CognitoIdentityProviderClient
-  ) {}
+  ) {
+    this.logger = this.loggerProvider.provide("AuthService");
+  }
 
   public async login(username: string, password: string) {
     try {
