@@ -1,6 +1,6 @@
 import { Router } from "express";
 import { Container } from "typedi";
-import { isAuth } from "@/auth";
+import { isAuth } from "../../auth";
 import FilmService from "./FilmService";
 
 const route = Router();

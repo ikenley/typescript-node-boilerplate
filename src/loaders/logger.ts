@@ -1,5 +1,5 @@
 import winston from "winston";
-import config from "@/config";
+import config from "../config";
 
 const transports = [];
 if (process.env.NODE_ENV === "test") {
@@ -12,19 +12,20 @@ if (process.env.NODE_ENV === "test") {
   } else {
     transports.push(
       new winston.transports.Console({
-        // format: winston.format.combine(
-        //   winston.format.colorize(),
-        //   winston.format.timestamp(),
-        //   winston.format.metadata({
-        //     fillExcept: ["message", "level", "timestamp", "label"],
-        //   }),
-        //   winston.format.printf(({ timestamp, level, message, metadata }) => {
-        //     return `${timestamp} ${level}: ${message} ${
-        //       metadata ? JSON.stringify(metadata) : ""
-        //     }`;
-        //   }),
-        //   winston.format.errors({ stack: true })
-        // ),
+        format: winston.format.combine(
+          winston.format.colorize(),
+          winston.format.timestamp(),
+          winston.format.metadata({
+            fillExcept: ["message", "level", "timestamp", "label"],
+          }),
+          winston.format.printf(({ timestamp, level, message, metadata }) => {
+            const moduleName = metadata?.module ? ` [${metadata.module}]` : "";
+            return `${timestamp} ${level}${moduleName}: ${message} ${
+              metadata ? JSON.stringify(metadata) : ""
+            }`;
+          }),
+          winston.format.errors({ stack: true })
+        ),
       })
     );
   }

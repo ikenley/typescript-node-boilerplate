@@ -1,6 +1,6 @@
-import config from "@/config";
+import config from "../config";
 import { createConnection, useContainer } from "typeorm";
-import { Film } from "@/components/film";
+import { Film } from "../components/film";
 import { Container } from "typeorm-typedi-extensions";
 
 // Configures database connection

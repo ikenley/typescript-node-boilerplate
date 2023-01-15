@@ -1,5 +1,5 @@
 import "reflect-metadata";
-import config from "@/config";
+import config from "./config";
 import express from "express";
 import Logger from "./loaders/logger";
 
@@ -17,9 +17,9 @@ async function startServer() {
   app
     .listen(config.port, () => {
       Logger.info(`
-      ################################################
-      🛡️  Server listening on port: ${config.port} 🛡️
-      ################################################
+#####################################
+✨  Server listening on port: ${config.port} ✨
+#####################################
     `);
     })
     .on("error", (err) => {
