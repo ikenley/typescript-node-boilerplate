@@ -1,15 +1,14 @@
-import { Container } from "typedi";
-// import formData from 'form-data';
-// import Mailgun from 'mailgun.js';
+import { container } from "tsyringe";
+import { getCustomRepository } from "typeorm";
 import LoggerInstance from "./logger";
 import CognitoExpress from "cognito-express";
 import { CognitoIdentityProviderClient } from "@aws-sdk/client-cognito-identity-provider";
-// import agendaFactory from './agenda';
 import config from "../config";
+import FilmRepository from "../components/film/FilmRepository";
 
 export default () => {
   try {
-    Container.set("logger", LoggerInstance);
+    container.register("logger", { useValue: LoggerInstance });
 
     const cognitoExpress = new CognitoExpress({
       region: config.aws.region,
@@ -17,12 +16,19 @@ export default () => {
       tokenUse: "id",
       tokenExpiration: 3600000,
     });
-    Container.set("CognitoExpress", cognitoExpress);
+    container.register("CognitoExpress", { useValue: cognitoExpress });
 
     const cognitoClient = new CognitoIdentityProviderClient({
       region: config.aws.region,
     });
-    Container.set(CognitoIdentityProviderClient, cognitoClient);
+    container.register(CognitoIdentityProviderClient, {
+      useValue: cognitoClient,
+    });
+
+    // Register ORM repositories
+    container.register(FilmRepository, {
+      useFactory: () => getCustomRepository(FilmRepository),
+    });
   } catch (e) {
     LoggerInstance.error("🔥 Error on dependency injector loader: %o", e);
     throw e;

@@ -1,13 +1,12 @@
-import { Service, Inject } from "typedi";
-import { InjectRepository } from "typeorm-typedi-extensions";
+import { injectable, inject } from "tsyringe";
 import winston from "winston";
 import FilmRepository from "./FilmRepository";
 
-@Service()
+@injectable()
 export default class FilmService {
   constructor(
-    @Inject("logger") private logger: winston.Logger,
-    @InjectRepository() private filmRepo: FilmRepository
+    @inject("logger") private logger: winston.Logger,
+    private filmRepo: FilmRepository
   ) {}
 
   public async find() {

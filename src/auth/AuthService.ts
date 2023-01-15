@@ -1,4 +1,4 @@
-import { Service, Inject } from "typedi";
+import { injectable, inject } from "tsyringe";
 import {
   CognitoIdentityProviderClient,
   AdminInitiateAuthCommand,
@@ -9,10 +9,10 @@ import { createHmac } from "crypto";
 
 const { userPoolId, userPoolClientId, userPoolClientSecret } = config.cognito;
 
-@Service()
+@injectable()
 export default class AuthService {
   constructor(
-    @Inject("logger") private logger: winston.Logger,
+    @inject("logger") private logger: winston.Logger,
     private cognitoClient: CognitoIdentityProviderClient
   ) {}
 

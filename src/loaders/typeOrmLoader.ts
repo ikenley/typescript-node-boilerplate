@@ -1,12 +1,9 @@
 import config from "../config";
-import { createConnection, useContainer } from "typeorm";
+import { createConnection } from "typeorm";
 import { Film } from "../components/film";
-import { Container } from "typeorm-typedi-extensions";
 
 // Configures database connection
 const { host, port, user, password, database, schema } = config.db;
-
-useContainer(Container);
 
 export default async () => {
   await createConnection({

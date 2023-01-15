@@ -1,5 +1,5 @@
 import { Router } from "express";
-import { Container } from "typedi";
+import { container } from "tsyringe";
 import AuthService from "./AuthService";
 
 const route = Router();
@@ -16,7 +16,7 @@ const authController = (app: Router) => {
     const loginRequest = req.body as LoginRequest;
     const { username, password } = loginRequest;
 
-    const authService = Container.get(AuthService);
+    const authService = container.resolve(AuthService);
     const result = await authService.login(username, password);
 
     res.send(result);

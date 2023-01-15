@@ -1,8 +1,8 @@
 import { EntityRepository, Repository } from "typeorm";
-import { Service } from "typedi";
+import { injectable } from "tsyringe";
 import Film from "./Film";
 
-@Service()
+@injectable()
 @EntityRepository(Film)
 export default class FilmRepository extends Repository<Film> {
   findByYear(year: number) {
