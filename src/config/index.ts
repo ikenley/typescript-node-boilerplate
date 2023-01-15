@@ -32,7 +32,7 @@ type ConfigOptions = {
 };
 
 const config: ConfigOptions = {
-  api: { prefix: "" },
+  api: { prefix: "/api" },
   app: {
     env: process.env.APP_ENV as AppEnv,
     name: process.env.APP_NAME || "app",

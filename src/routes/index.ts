@@ -1,5 +1,5 @@
 import { Router } from "express";
-import { authController } from "@/auth";
+import { authController } from "../auth";
 import { statusController } from "../components/status";
 import { filmController } from "../components/film";
 

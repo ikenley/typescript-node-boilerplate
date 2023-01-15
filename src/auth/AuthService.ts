@@ -4,7 +4,7 @@ import {
   AdminInitiateAuthCommand,
 } from "@aws-sdk/client-cognito-identity-provider";
 import winston from "winston";
-import config from "@/config";
+import config from "../config";
 import { createHmac } from "crypto";
 
 const { userPoolId, userPoolClientId, userPoolClientSecret } = config.cognito;

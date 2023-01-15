@@ -5,7 +5,7 @@ import LoggerInstance from "./logger";
 import CognitoExpress from "cognito-express";
 import { CognitoIdentityProviderClient } from "@aws-sdk/client-cognito-identity-provider";
 // import agendaFactory from './agenda';
-import config from "@/config";
+import config from "../config";
 
 export default () => {
   try {

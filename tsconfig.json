@@ -28,12 +28,7 @@
       "ES6",
       "DOM"
     ],
-    "baseUrl": "./",
-    "paths": {
-      "@/*": [
-        "src/*"
-      ]
-    }
+    "baseUrl": "./"
   },
   "include": [
     "src/**/*.ts"
