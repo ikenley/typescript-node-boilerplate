@@ -1,12 +1,17 @@
+import { injectable, inject } from "tsyringe";
 import winston from "winston";
-import { Service, Inject } from "typedi";
+import LoggerProvider from "../utils/LoggerProvider";
 
-@Service()
+@injectable()
 export default class JwtValidatorService {
+  private logger: winston.Logger;
+
   constructor(
-    @Inject("logger") private logger: winston.Logger,
-    @Inject("CognitoExpress") private cognitoExpress: any
-  ) {}
+    private loggerProvider: LoggerProvider,
+    @inject("CognitoExpress") private cognitoExpress: any
+  ) {
+    this.logger = this.loggerProvider.provide("LoggerProvider");
+  }
 
   public async validate(token: string) {
     if (!token) {

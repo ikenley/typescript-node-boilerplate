@@ -17,13 +17,13 @@ npm run start
 - [Node](https://nodejs.org/en/)
 - [Express](https://expressjs.com/)
 - [jest](https://jestjs.io/) and [supertest](https://github.com/visionmedia/supertest) for testing
-- Logging: [winston](https://github.com/winstonjs/winston)
+- [winston](https://github.com/winstonjs/winston) for logging
 - TODO exception handling
 - Environment configuration
   - `dotenv` (see [./src/config/index.ts](./src/config/index.ts))
   - consider https://www.npmjs.com/package/rc
 - [typeorm](https://typeorm.io/#/) for data access
-- [typedi](https://github.com/typestack/typedi) for dependency injection
+- [tsyringe](https://github.com/microsoft/tsyringe) for dependency injection
 - [linting](eslintrc.js)
 - [routing](src/routes/index.ts)
 - [Flyway](https://flywaydb.org/) SQL migrations. See `./sql/flyway`

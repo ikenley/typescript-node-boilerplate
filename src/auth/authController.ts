@@ -1,5 +1,4 @@
 import { Router } from "express";
-import { Container } from "typedi";
 import AuthService from "./AuthService";
 
 const route = Router();
@@ -16,7 +15,7 @@ const authController = (app: Router) => {
     const loginRequest = req.body as LoginRequest;
     const { username, password } = loginRequest;
 
-    const authService = Container.get(AuthService);
+    const authService = res.locals.container.resolve(AuthService);
     const result = await authService.login(username, password);
 
     res.send(result);

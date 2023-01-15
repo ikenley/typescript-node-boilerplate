@@ -1,24 +1,27 @@
-import { Service, Inject } from "typedi";
-import { InjectRepository } from "typeorm-typedi-extensions";
+import { injectable } from "tsyringe";
 import winston from "winston";
+import LoggerProvider from "../../utils/LoggerProvider";
 import FilmRepository from "./FilmRepository";
 
-@Service()
+@injectable()
 export default class FilmService {
+  private logger: winston.Logger;
+
   constructor(
-    @Inject("logger") private logger: winston.Logger,
-    @InjectRepository() private filmRepo: FilmRepository
-  ) {}
+    private loggerProvider: LoggerProvider,
+    private filmRepo: FilmRepository
+  ) {
+    this.logger = this.loggerProvider.provide("FilmService");
+  }
 
   public async find() {
-    //const filmRepo = getCustomRepository(FilmRepository);
+    this.logger.info(`find`);
     const films = await this.filmRepo.find({ take: 10 });
     return films;
   }
 
   public async findByYear(year: number) {
-    this.logger.info(`FilmService: Finding films from year ${year}`);
-    //const filmRepo = getCustomRepository(FilmRepository);
+    this.logger.info(`Finding films from year ${year}`);
     const films = await this.filmRepo.findByYear(year);
     return films;
   }

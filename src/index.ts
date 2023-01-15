@@ -1,4 +1,5 @@
 import "reflect-metadata";
+import "express-async-errors";
 import config from "./config";
 import express from "express";
 import Logger from "./loaders/logger";

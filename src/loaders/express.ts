@@ -5,6 +5,8 @@ import morgan from "morgan";
 import logger from "./logger";
 import routes from "../routes";
 import config from "../config";
+import dependencyInjectionMiddleware from "../middleware/dependencyInjectionMiddleware";
+import exceptionMiddleware from "../middleware/exceptionMiddleware";
 
 export default ({ app }: { app: express.Application }) => {
   // Useful if you're behind a reverse proxy (Heroku, Bluemix, AWS ELB, Nginx, etc)
@@ -33,14 +35,8 @@ export default ({ app }: { app: express.Application }) => {
   );
 
   // Load API routes
+  app.use(config.api.prefix, dependencyInjectionMiddleware);
   app.use(config.api.prefix, routes());
-
-  // API Documentation
-  // app.use(
-  //   OpticMiddleware({
-  //     enabled: process.env.NODE_ENV !== "production",
-  //   })
-  // );
 
   /// catch 404 and forward to error handler
   app.use((_req, _res, next) => {
@@ -59,12 +55,5 @@ export default ({ app }: { app: express.Application }) => {
     }
     return next(err);
   });
-  app.use((err: any, _req: any, res: any, _next: any) => {
-    res.status(err.status || 500);
-    res.json({
-      errors: {
-        message: err.message,
-      },
-    });
-  });
+  app.use(exceptionMiddleware);
 };

@@ -1,20 +1,25 @@
-import { Service, Inject } from "typedi";
+import { injectable } from "tsyringe";
 import {
   CognitoIdentityProviderClient,
   AdminInitiateAuthCommand,
 } from "@aws-sdk/client-cognito-identity-provider";
 import winston from "winston";
-import config from "../config";
 import { createHmac } from "crypto";
+import config from "../config";
+import LoggerProvider from "../utils/LoggerProvider";
 
 const { userPoolId, userPoolClientId, userPoolClientSecret } = config.cognito;
 
-@Service()
+@injectable()
 export default class AuthService {
+  private logger: winston.Logger;
+
   constructor(
-    @Inject("logger") private logger: winston.Logger,
+    private loggerProvider: LoggerProvider,
     private cognitoClient: CognitoIdentityProviderClient
-  ) {}
+  ) {
+    this.logger = this.loggerProvider.provide("AuthService");
+  }
 
   public async login(username: string, password: string) {
     try {
