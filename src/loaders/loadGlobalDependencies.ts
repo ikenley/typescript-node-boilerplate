@@ -1,15 +1,21 @@
 import { container } from "tsyringe";
 import { getCustomRepository } from "typeorm";
+import { NIL } from "uuid";
 import LoggerInstance from "./logger";
 import CognitoExpress from "cognito-express";
 import { CognitoIdentityProviderClient } from "@aws-sdk/client-cognito-identity-provider";
 import config from "../config";
 import FilmRepository from "../components/film/FilmRepository";
 import { LoggerToken } from "./logger";
+import { RequestIdToken } from "../middleware/dependencyInjectionMiddleware";
 
 export default () => {
   try {
     container.register(LoggerToken, { useValue: LoggerInstance });
+
+    // Register default request Id.
+    // This will be replaced by request-level dependency container in most cases
+    container.register(RequestIdToken, { useValue: NIL });
 
     const cognitoExpress = new CognitoExpress({
       region: config.aws.region,

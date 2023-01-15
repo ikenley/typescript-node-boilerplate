@@ -5,6 +5,7 @@ import morgan from "morgan";
 import logger from "./logger";
 import routes from "../routes";
 import config from "../config";
+import dependencyInjectionMiddleware from "../middleware/dependencyInjectionMiddleware";
 
 export default ({ app }: { app: express.Application }) => {
   // Useful if you're behind a reverse proxy (Heroku, Bluemix, AWS ELB, Nginx, etc)
@@ -33,6 +34,7 @@ export default ({ app }: { app: express.Application }) => {
   );
 
   // Load API routes
+  app.use(config.api.prefix, dependencyInjectionMiddleware);
   app.use(config.api.prefix, routes());
 
   /// catch 404 and forward to error handler
