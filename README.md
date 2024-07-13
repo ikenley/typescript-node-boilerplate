@@ -85,3 +85,4 @@ docker tag typescript-node-boilerplate:latest typescript-node-boilerplate:1.0.0
 - https://github.com/HappyZombies/express-backend-starter
 - https://softwareontheroad.com/ideal-nodejs-project-structure/
 - https://github.com/santiq/bulletproof-nodejs
+- https://www.learnwithjason.dev/blog/modern-node-server-typescript-2024
