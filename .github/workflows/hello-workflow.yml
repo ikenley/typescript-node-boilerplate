@@ -1,4 +1,4 @@
-name: Update npm packages
+name: hello-workflow
 
 on:
   schedule:
