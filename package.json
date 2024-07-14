@@ -1,7 +1,7 @@
 {
   "name": "typescript-node-boilerplate",
   "version": "1.0.0",
-  "description": "Boilerplate for Typescript Node application",
+  "description": "Boilerplate for Typescript node.js application",
   "main": "src/index.ts",
   "scripts": {
     "build": "tsc -p tsconfig.json",
