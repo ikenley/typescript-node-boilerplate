@@ -86,3 +86,9 @@ docker tag typescript-node-boilerplate:latest typescript-node-boilerplate:1.0.0
 - https://softwareontheroad.com/ideal-nodejs-project-structure/
 - https://github.com/santiq/bulletproof-nodejs
 - https://www.learnwithjason.dev/blog/modern-node-server-typescript-2024
+
+---
+
+## Automatic dependency management
+
+This project uses the `.github/workflows/update-packages.yml` [GitHub Workflow](https://docs.github.com/en/actions/using-workflows) to automate npm updates. It will also [authenticate with AWS](https://github.com/marketplace/actions/configure-aws-credentials-action-for-github-actions) in order to use private libraries in [AWS CodeArtifact](https://docs.aws.amazon.com/codeartifact/).

@@ -2,16 +2,12 @@ name: Update npm packages
 
 on:
   workflow_dispatch:
-
   schedule:
-    - cron:  "14 3 * * 1" # At 03:14 on Monday
-
+    - cron: "14 3 * * 1" # At 03:14 on Monday
 jobs:
   update-packages:
     name: update packages
-
     runs-on: ubuntu-latest
-
     steps:
       - name: Checkout
         uses: actions/checkout@v4
@@ -19,7 +15,19 @@ jobs:
       - name: Set up Node.js
         uses: actions/setup-node@v4
         with:
-          node-version: '22.x'
+          node-version: "22.x"
+
+      - name: Configure AWS
+        uses: aws-actions/configure-aws-credentials@v4
+
+      - name: Configure CodeArtifact
+        run: > 
+          aws codeartifact login 
+          --tool npm 
+          --repository ${{ secrets.CODE_ARTIFACT_REPO }} 
+          --domain ${{ secrets.CODE_ARTIFACT_DOMAIN }} 
+          --domain-owner ${{ secrets.CODE_ARTIFACT_DOMAIN_OWNER }} 
+          --region ${{ secrets.AWS_REGION }}
 
       - name: update packages
         run: npm update --save
@@ -27,6 +35,6 @@ jobs:
       - name: Commit and create PR
         uses: peter-evans/create-pull-request@v6
         with:
-          title: 'Update npm packages'
-          branch: 'npm-update-job'
-          commit-message: 'Update npm packages'
+          title: "Update npm packages"
+          branch: "npm-update-job"
+          commit-message: "Update npm packages"
