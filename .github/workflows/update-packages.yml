@@ -4,6 +4,9 @@ on:
   workflow_dispatch:
   schedule:
     - cron: "14 3 * * 1" # At 03:14 on Monday
+permissions:
+  id-token: write   # This is required for requesting the JWT
+  contents: read    # This is required for actions/checkout
 jobs:
   update-packages:
     name: update packages
@@ -11,15 +14,16 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v4
-
       - name: Set up Node.js
         uses: actions/setup-node@v4
         with:
           node-version: "22.x"
-
       - name: Configure AWS
         uses: aws-actions/configure-aws-credentials@v4
-
+        with:
+          role-to-assume: ${{ secrets.AWS_ROLE }}
+          role-session-name: updatepackagessession
+          aws-region: ${{ secrets.AWS_REGION }}
       - name: Configure CodeArtifact
         run: > 
           aws codeartifact login 
@@ -28,10 +32,8 @@ jobs:
           --domain ${{ secrets.CODE_ARTIFACT_DOMAIN }} 
           --domain-owner ${{ secrets.CODE_ARTIFACT_DOMAIN_OWNER }} 
           --region ${{ secrets.AWS_REGION }}
-
       - name: update packages
         run: npm update --save
-
       - name: Commit and create PR
         uses: peter-evans/create-pull-request@v6
         with:
