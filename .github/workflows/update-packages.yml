@@ -41,3 +41,4 @@ jobs:
           title: "Update npm packages"
           branch: "npm-update-job"
           commit-message: "Update npm packages"
+          body: Update npm packages
