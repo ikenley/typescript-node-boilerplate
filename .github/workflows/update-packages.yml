@@ -6,7 +6,7 @@ on:
     - cron: "14 3 * * 1" # At 03:14 on Monday
 permissions:
   id-token: write   # This is required for requesting the JWT
-  contents: read    # This is required for actions/checkout
+  contents: write    # This is required for actions/checkout + PR request
 jobs:
   update-packages:
     name: update packages
