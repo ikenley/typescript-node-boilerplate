@@ -16,7 +16,7 @@ COPY --chown=node:node . .
 RUN npm run build
 
 # This will use a minimal base image for the runtime
-FROM node:22.4.1-alpine
+FROM node:22.6-alpine
 
 USER node
 WORKDIR /usr/src/app
